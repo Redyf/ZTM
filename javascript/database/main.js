@@ -12,7 +12,6 @@ var database = [
     password: "777",
   },
 ];
-
 var newsFeed = [
   {
     username: "Bruno",
