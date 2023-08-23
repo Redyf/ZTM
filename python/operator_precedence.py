@@ -1,0 +1,5 @@
+print(float(90 / 2))
+print(90.0 / 2)
+print(float(90 - 45))
+print(float(50 / 2))
+print(50 - 25)
