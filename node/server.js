@@ -1,38 +1,21 @@
 const express = require('express');
 
 const app = express();
+app.use(express.static(__dirname + '/public'))
 
-app.use((req, res, next) => {
-  console.log('<h1>HELLOOOOO</h1>')
-  next()
+app.get('/:id', (req, res) => {
+  console.log(req.params)
+  res.status(404).send('Not Found')
 })
 
-const usersArray = [
-  {
-    name: 'Bruno Perzentino', hobby: 'Valoran best game'
-  },
-  {
-    name: 'Filipe Oliveira', hobby: 'Minecraft'
-  },
-  {
-    name: 'Mateus Alves', hobby: 'Falar sobre linux, é isso'
-  },
-  {
-    nome: 'Gabriel Miranda', hobby: "I use Arch linux btw"
-  }
-]
-
-app.get('/', (req, res) => {
-  for (let i = 0; i < usersArray.length; i++) {
-    const user = usersArray[i];
-    console.log(user.name)
-  }
-  res.send(usersArray)
+app.get('/profile', (req, res) => {
+  res.send('getting profile')
 })
 
 // Tentando entender como funciona as funções get, post, put e delete...
-app.post('/', (req, res) => {
-  res.get(usersArray.push({ nome: 'Claudia', hobby: 'teste' }))
+app.post('/profile', (req, res) => {
+  console.log(req.body)
+  res.send('Success')
 })
 
 app.delete('/', (req, res) => {
