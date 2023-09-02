@@ -1,17 +1,37 @@
-const http = require('http');
+const express = require('express');
 
-const server = http.createServer((request, response) => {
-  console.log('I hear you! Stay tuned for response.')
-  // console.log('headers', request.headers)
-  console.log('method', request.method)
-  console.log('url', request.url)
-  const user = {
-    name: 'john',
-    hobby: 'gaming'
+const app = express();
+
+const usersArray = [
+  {
+    name: 'Bruno Perzentino', hobby: 'Valoran best game'
+  },
+  {
+    name: 'Filipe Oliveira', hobby: 'Minecraft'
+  },
+  {
+    name: 'Mateus Alves', hobby: 'Falar sobre linux, é isso'
+  },
+  {
+    nome: 'Gabriel Miranda', hobby: "I use Arch linux btw"
   }
-  response.setHeader('Content-type', 'application / json')
-  response.end(JSON.stringify(user))
+]
 
+app.get('/', (req, res) => {
+  for (let i = 0; i < usersArray.length; i++) {
+    const user = usersArray[i];
+    console.log(user.name)
+  }
+  res.send(usersArray)
 })
 
-server.listen(3000)
+// Tentando entender como funciona as funções get, post, put e delete...
+app.post('/', (req, res) => {
+  res.get(usersArray.push({ nome: 'Claudia', hobby: 'teste' }))
+})
+
+app.delete('/', (req, res) => {
+  res.delete(usersArray[0])
+})
+
+app.listen(3000)
