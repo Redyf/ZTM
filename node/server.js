@@ -2,6 +2,11 @@ const express = require('express');
 
 const app = express();
 
+app.use((req, res, next) => {
+  console.log('<h1>HELLOOOOO</h1>')
+  next()
+})
+
 const usersArray = [
   {
     name: 'Bruno Perzentino', hobby: 'Valoran best game'
